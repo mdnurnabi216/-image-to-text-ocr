@@ -21,11 +21,20 @@
       </div>
 
       <div class="controls">
-        <label for="lang">Language:</label>
+        <label for="lang">Prefer language:</label>
         <select id="lang">
           <option value="eng">English (eng)</option>
           <option value="ben">Bengali / বাংলা (ben)</option>
+          <option value="hin">Hindi (hin)</option>
+          <option value="spa">Spanish (spa)</option>
+          <option value="fra">French (fra)</option>
+          <option value="deu">German (deu)</option>
         </select>
+
+        <label style="margin-left:12px;">
+          <input type="checkbox" id="multiLang" />
+          Try multiple languages (Auto)
+        </label>
 
         <button id="startBtn" class="btn">Start OCR</button>
         <button id="clearBtn" class="btn btn-ghost">Clear</button>
@@ -53,9 +62,9 @@
     <section class="notes">
       <h3>Notes</h3>
       <ul>
-        <li>All OCR runs in your browser (no files uploaded to server).</li>
-        <li>Accuracy depends on image quality and language training data.</li>
-        <li>For large images, consider resizing before upload for faster results.</li>
+        <li>If you check "Try multiple languages", the app will load several language packs (this may take longer the first time).</li>
+        <li>For best results, use clear, well-lit and straight images (higher resolution).</li>
+        <li>If performance is slow or results are poor for many languages, consider server-side OCR (paid) for broader support.</li>
       </ul>
     </section>
   </main>
