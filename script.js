@@ -1,5 +1,5 @@
-// Updated script.js: supports Bengali (ben) and basic preprocessing
-// Uses Tesseract.js v2 and loads language packs from projectnaptha tessdata
+// Updated: supports multi-language (auto) preset and basic preprocessing.
+// Uses Tesseract.js v2 and tessdata from projectnaptha.
 
 const fileElem = document.getElementById('fileElem');
 const dropArea = document.getElementById('drop-area');
@@ -12,6 +12,10 @@ const downloadBtn = document.getElementById('downloadBtn');
 const progressFill = document.getElementById('progressFill');
 const statusEl = document.getElementById('status');
 const langSelect = document.getElementById('lang');
+const multiLangChk = document.getElementById('multiLang');
+
+// Recommended multi-language preset (adjust as needed)
+const LANG_PRESET = ['eng','ben','hin','spa','fra','deu','ita','por','rus','ara'];
 
 let selectedFile = null;
 let worker = null;
@@ -55,7 +59,13 @@ startBtn.addEventListener('click', async () => {
     alert('Please choose or drop an image first.');
     return;
   }
-  const lang = langSelect.value || 'eng';
+  let lang;
+  if (multiLangChk && multiLangChk.checked) {
+    // join preset languages with '+'
+    lang = LANG_PRESET.join('+');
+  } else {
+    lang = langSelect.value || 'eng';
+  }
   await runOCR(selectedFile, lang);
 });
 
@@ -117,7 +127,6 @@ async function preprocessFileToDataURL(file, maxWidth = 1600) {
       const imgData = ctx.getImageData(0, 0, w, h);
       for (let i = 0; i < imgData.data.length; i += 4) {
         const r = imgData.data[i], g = imgData.data[i+1], b = imgData.data[i+2];
-        // luminance
         const lum = 0.2126*r + 0.7152*g + 0.0722*b;
         imgData.data[i] = imgData.data[i+1] = imgData.data[i+2] = lum;
       }
@@ -125,7 +134,6 @@ async function preprocessFileToDataURL(file, maxWidth = 1600) {
       resolve(canvas.toDataURL('image/png'));
     };
     img.onerror = reject;
-    // use object URL for file blob
     img.src = URL.createObjectURL(file);
   });
 }
@@ -152,11 +160,11 @@ async function runOCR(file, lang='eng'){
     });
 
     await worker.load();
-    // load the selected language (e.g., 'ben' for Bengali)
+    // load languages string (can be 'eng' or 'eng+ben+hin' etc.)
     await worker.loadLanguage(lang);
     await worker.initialize(lang);
 
-    // Preprocess image (helps with messy / low-contrast Bengali scans)
+    // Preprocess image to help OCR
     const dataUrl = await preprocessFileToDataURL(file, 1600);
 
     // Recognize from data URL
@@ -175,4 +183,4 @@ async function runOCR(file, lang='eng'){
       worker = null;
     }
   }
-}
+        }
