@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Image to Text (OCR) — Free</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Image to Text (OCR)</h1>
+    <p class="tagline">Free client-side OCR using Tesseract.js — English (eng)</p>
+  </header>
+
+  <main>
+    <section class="uploader">
+      <div id="drop-area" class="drop-area">
+        <input id="fileElem" type="file" accept="image/*" />
+        <p>Drag & drop an image here, or <label for="fileElem" class="file-label">choose a file</label></p>
+        <small>Supported: PNG, JPG, JPEG, GIF. Max: browser limits (recommend ≤ 5MB)</small>
+      </div>
+
+      <div class="controls">
+        <label for="lang">Language:</label>
+        <select id="lang">
+          <option value="eng" selected>English (eng)</option>
+          <!-- you can add more languages later if traineddata is available -->
+        </select>
+
+        <button id="startBtn" class="btn">Start OCR</button>
+        <button id="clearBtn" class="btn btn-ghost">Clear</button>
+      </div>
+
+      <div class="preview-area">
+        <img id="preview" alt="preview" />
+      </div>
+
+      <div class="progress">
+        <div id="progressBar" class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+        <div id="status" class="status">Idle</div>
+      </div>
+    </section>
+
+    <section class="result">
+      <h2>Recognized Text</h2>
+      <textarea id="resultText" placeholder="OCR result will appear here..." spellcheck="false"></textarea>
+      <div class="result-actions">
+        <button id="copyBtn" class="btn">Copy</button>
+        <button id="downloadBtn" class="btn">Download .txt</button>
+      </div>
+    </section>
+
+    <section class="notes">
+      <h3>Notes</h3>
+      <ul>
+        <li>All OCR runs in your browser (no files uploaded to server).</li>
+        <li>Accuracy depends on image quality and language training data.</li>
+        <li>For large images, consider resizing before upload for faster results.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built with Tesseract.js — free & client-side</p>
+  </footer>
+
+  <!-- Tesseract.js from CDN -->
+  <script src="https://unpkg.com/tesseract.js@2.1.5/dist/tesseract.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
