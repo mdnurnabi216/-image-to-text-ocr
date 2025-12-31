@@ -1,80 +1,198 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Image to Text (OCR) — Free</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<title>Free Online Tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+body{
+  margin:0;
+  font-family: Inter, Arial, sans-serif;
+  background:#ffffff;
+  color:#111;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 30px;
+  border-bottom:1px solid #eee;
+}
+.logo{
+  font-size:22px;
+  font-weight:700;
+}
+nav a{
+  margin-left:20px;
+  text-decoration:none;
+  color:#333;
+  font-size:14px;
+}
+.btn{
+  background:#2563eb;
+  color:#fff;
+  padding:8px 14px;
+  border-radius:6px;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:60px 20px 30px;
+}
+.hero h1{
+  font-size:36px;
+  margin-bottom:10px;
+}
+.hero p{
+  color:#555;
+}
+
+/* TOOLS GRID */
+.tools{
+  max-width:1100px;
+  margin:0 auto;
+  padding:30px 20px 60px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+
+.card{
+  border:1px solid #eee;
+  border-radius:10px;
+  padding:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:0.2s;
+}
+.card:hover{
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
+.card-left{
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+.icon{
+  width:46px;
+  height:46px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  color:#fff;
+}
+.blue{background:#2563eb;}
+.green{background:#22c55e;}
+.orange{background:#f59e0b;}
+.red{background:#ef4444;}
+
+.card h3{
+  margin:0;
+  font-size:16px;
+}
+.card p{
+  margin:4px 0 0;
+  font-size:13px;
+  color:#555;
+}
+.arrow{
+  font-size:22px;
+  color:#999;
+}
+
+/* BUTTON */
+.center{
+  text-align:center;
+  margin-bottom:60px;
+}
+.center a{
+  background:#2563eb;
+  color:#fff;
+  padding:12px 20px;
+  border-radius:8px;
+  text-decoration:none;
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <h1>Image to Text (OCR)</h1>
-    <p class="tagline">Free client-side OCR using Tesseract.js</p>
-  </header>
 
-  <main>
-    <section class="uploader">
-      <div id="drop-area" class="drop-area">
-        <input id="fileElem" type="file" accept="image/*" />
-        <p>Drag & drop an image here, or <label for="fileElem" class="file-label">choose a file</label></p>
-        <small>Supported: PNG, JPG, JPEG, GIF. Max: browser limits (recommend ≤ 5MB)</small>
+<header>
+  <div class="logo">🛠 Tools</div>
+  <nav>
+    <a href="#">Tools</a>
+    <a href="#">Pricing</a>
+    <a href="#">Login</a>
+    <a class="btn" href="#">Free Trial</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Most Popular Online Tools</h1>
+  <p>Convert, edit and manage files online for free</p>
+</section>
+
+<section class="tools">
+
+  <a class="card" href="image-to-text/">
+    <div class="card-left">
+      <div class="icon blue">🖼</div>
+      <div>
+        <h3>Image to Text</h3>
+        <p>Convert image into editable text</p>
       </div>
+    </div>
+    <div class="arrow">›</div>
+  </a>
 
-      <div class="controls">
-        <label for="lang">Prefer language:</label>
-        <select id="lang">
-          <option value="eng">English (eng)</option>
-          <option value="ben">Bengali / বাংলা (ben)</option>
-          <option value="hin">Hindi (hin)</option>
-          <option value="spa">Spanish (spa)</option>
-          <option value="fra">French (fra)</option>
-          <option value="deu">German (deu)</option>
-        </select>
-
-        <label style="margin-left:12px;">
-          <input type="checkbox" id="multiLang" />
-          Try multiple languages (Auto)
-        </label>
-
-        <button id="startBtn" class="btn">Start OCR</button>
-        <button id="clearBtn" class="btn btn-ghost">Clear</button>
+  <a class="card" href="notepad/">
+    <div class="card-left">
+      <div class="icon green">📝</div>
+      <div>
+        <h3>Online Notepad</h3>
+        <p>Write & save notes online</p>
       </div>
+    </div>
+    <div class="arrow">›</div>
+  </a>
 
-      <div class="preview-area">
-        <img id="preview" alt="preview" />
+  <div class="card">
+    <div class="card-left">
+      <div class="icon orange">📄</div>
+      <div>
+        <h3>PDF Tools</h3>
+        <p>Coming soon</p>
       </div>
+    </div>
+    <div class="arrow">›</div>
+  </div>
 
-      <div class="progress">
-        <div id="progressBar" class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
-        <div id="status" class="status">Idle</div>
+  <div class="card">
+    <div class="card-left">
+      <div class="icon red">✂</div>
+      <div>
+        <h3>File Compressor</h3>
+        <p>Reduce file size</p>
       </div>
-    </section>
+    </div>
+    <div class="arrow">›</div>
+  </div>
 
-    <section class="result">
-      <h2>Recognized Text</h2>
-      <textarea id="resultText" placeholder="OCR result will appear here..." spellcheck="false"></textarea>
-      <div class="result-actions">
-        <button id="copyBtn" class="btn">Copy</button>
-        <button id="downloadBtn" class="btn">Download .txt</button>
-      </div>
-    </section>
+</section>
 
-    <section class="notes">
-      <h3>Notes</h3>
-      <ul>
-        <li>If you check "Try multiple languages", the app will load several language packs (this may take longer the first time).</li>
-        <li>For best results, use clear, well-lit and straight images (higher resolution).</li>
-        <li>If performance is slow or results are poor for many languages, consider server-side OCR (paid) for broader support.</li>
-      </ul>
-    </section>
-  </main>
+<div class="center">
+  <a href="#">See All Tools</a>
+</div>
 
-  <footer>
-    <p>Built with Tesseract.js — free & client-side</p>
-  </footer>
-
-  <!-- Tesseract.js from CDN -->
-  <script src="https://unpkg.com/tesseract.js@2.1.5/dist/tesseract.min.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>
