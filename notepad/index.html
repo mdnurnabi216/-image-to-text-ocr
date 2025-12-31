@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Online Notepad Tool</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+    }
+
+    header {
+        background: #2563eb;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    textarea {
+        width: 100%;
+        height: 65vh;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        resize: none;
+        outline: none;
+    }
+
+    .buttons {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    button {
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .save {
+        background: #22c55e;
+        color: white;
+    }
+
+    .clear {
+        background: #ef4444;
+        color: white;
+    }
+
+    .download {
+        background: #0ea5e9;
+        color: white;
+    }
+
+    footer {
+        text-align: center;
+        padding: 10px;
+        font-size: 13px;
+        color: #555;
+    }
+</style>
+</head>
+
+<body>
+
+<header>📝 Online Notepad Tool</header>
+
+<div class="container">
+    <textarea id="note" placeholder="Type your notes here..."></textarea>
+
+    <div class="buttons">
+        <button class="save" onclick="saveNote()">Save</button>
+        <button class="clear" onclick="clearNote()">Clear</button>
+        <button class="download" onclick="downloadNote()">Download</button>
+    </div>
+</div>
+
+<footer>
+    © 2025 Your Tools Website
+</footer>
+
+<script>
+    const note = document.getElementById("note");
+
+    // Load saved text
+    note.value = localStorage.getItem("notepad_text") || "";
+
+    function saveNote() {
+        localStorage.setItem("notepad_text", note.value);
+        alert("Note Saved!");
+    }
+
+    function clearNote() {
+        if (confirm("Clear all text?")) {
+            note.value = "";
+            localStorage.removeItem("notepad_text");
+        }
+    }
+
+    function downloadNote() {
+        const text = note.value;
+        const blob = new Blob([text], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "note.txt";
+        link.click();
+    }
+</script>
+
+</body>
+</html>
